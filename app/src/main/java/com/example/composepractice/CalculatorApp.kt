@@ -1,6 +1,7 @@
 package com.example.composepractice
 
 import android.widget.Button
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
@@ -15,6 +16,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.runtime.currentRecomposeScope
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
 @Composable
 fun Calculator(modifier: Modifier) {
@@ -36,25 +40,32 @@ fun Calculator(modifier: Modifier) {
 
 
     fun AddValueToNumber(x: Double) {
-        if(operator == "") {
+        if (operator == "") {
             firstNumber = (firstNumber * 10) + x
-        }
-        else {
+        } else {
             secondNumber = (secondNumber * 10) + x
         }
     }
 
-    Column(modifier = Modifier.fillMaxSize()) {
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        verticalArrangement = Arrangement.Bottom,
+        horizontalAlignment = Alignment.End
+    ) {
         TextField(
             value = display,
-            onValueChange = {}
+            onValueChange = {},
+            modifier = Modifier.fillMaxWidth()
         )
 
-        Row(modifier = Modifier.fillMaxWidth()) {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
             Button({
                 display += "1"
                 AddValueToNumber(1.0)
-            }) {
+            },) {
                 Text(text = "1")
             }
             Button({
@@ -77,7 +88,10 @@ fun Calculator(modifier: Modifier) {
             }
         }
 
-        Row(modifier = Modifier.fillMaxWidth()) {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
             Button({
                 display += "4"
                 AddValueToNumber(4.0)
@@ -104,7 +118,10 @@ fun Calculator(modifier: Modifier) {
             }
         }
 
-        Row(modifier = Modifier.fillMaxWidth()) {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
             Button({
                 display += "7"
                 AddValueToNumber(7.0)
@@ -131,7 +148,10 @@ fun Calculator(modifier: Modifier) {
             }
         }
 
-        Row(modifier = Modifier.fillMaxWidth()) {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
             Button({
                 display += "0"
                 AddValueToNumber(0.0)
